@@ -25,9 +25,6 @@ server.start(
         port,
         cors: {
             origin: "*",
-            methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-            preflightContinue: false,
-            optionsSuccessStatus: 204
         }
     },
     () => console.log(`Server is running on http://localhost:4000`)
