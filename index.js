@@ -18,7 +18,9 @@ const server = new GraphQLServer({
     resolvers: {
         Query,
         Mutation
-    }
+    },
+    introspection: true,
+    playground: true
 });
 server.start(
     {
