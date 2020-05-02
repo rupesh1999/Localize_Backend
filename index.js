@@ -18,16 +18,15 @@ const server = new GraphQLServer({
     resolvers: {
         Query,
         Mutation
-    },
-    introspection: true,
-    playground: true
+    }
 });
 server.start(
     {
         port,
         cors: {
             origin: "*",
-        }
+        },
+        playground: "/graphql"
     },
     () => console.log(`Server is running on http://localhost:4000`)
 );
