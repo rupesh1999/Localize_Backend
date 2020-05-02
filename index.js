@@ -1,27 +1,18 @@
 // const { GraphQLServer } = require("graphql-yoga");
-import {GraphQLServer} from "graphql-yoga";
+import { GraphQLServer } from "graphql-yoga";
 import Query from "./resolvers/Query";
-import {PrismaClient} from "@prisma/client";
+import mongoose from "mongoose";
+import Mutation from "./resolvers/Mutation";
+ 
+mongoose.connect('mongodb://admin:pwd123@ds127115.mlab.com:27115/localize', {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
+  console.log("mongodb connected");
+});
 
-const prisma = new PrismaClient();
-
-const getData = async () => {
-    const user = await prisma.user.create({
-        data: {
-          name: "Rupesh",
-          email: "rs.rupesh95@gmail.com",
-          password: "abc123"
-        }
-      })
-    console.log(user);
-}
-
-getData().catch(e => console.log(e));
-console.log("good thing");
 const server = new GraphQLServer({
-    typeDefs: './schema.graphql',
+    typeDefs: "./schema.graphql",
     resolvers: {
-        Query
-    },
+        Query,
+        Mutation
+    }
 });
 server.start(() => console.log(`Server is running on http://localhost:4000`));
