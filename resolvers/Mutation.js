@@ -1,7 +1,6 @@
 import User from "../models/User";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { async } from "rxjs/internal/scheduler/async";
 
 const keys = {
     secretOrKey: "mycompletelyhiddensecretkey"
