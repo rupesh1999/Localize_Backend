@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon index.js --ext js,graphql --exec babel-node",
-    "heroku-postbuild": "babel ./ --out-dir dist --ignore node_modules --copy-files"
+    "heroku-prebuild": "babel ./ --out-dir dist --ignore node_modules --copy-files"
   },
   "author": "rupesh",
   "license": "MIT",
