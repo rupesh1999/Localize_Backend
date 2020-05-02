@@ -1,14 +1,23 @@
 import User from "../models/User";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { async } from "rxjs/internal/scheduler/async";
 
 const keys = {
     secretOrKey: "mycompletelyhiddensecretkey"
 };
 
 const Mutation = {
-    addUser: (parent, args, ctx, info) => {
-        console.log(args);
+    addUser: async (parent, args, ctx, info) => {
+        const check = await User.findOne({
+            email : args.data.email 
+        });
+        if(check){
+            return {
+                name: "",
+                email: ""
+            }
+        }
         const user = new User(args.data);
         user.save()
             .then(() => console.log("user saved"))
