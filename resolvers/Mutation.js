@@ -34,7 +34,6 @@ const Mutation = {
         let token = jwt.sign(user.toJSON(), keys.secretOrKey, {
             expiresIn: 7 * 24 * 60 * 60 //1 week in in seconds
         });
-        console.log(token);
 
         return {
             success: true,
