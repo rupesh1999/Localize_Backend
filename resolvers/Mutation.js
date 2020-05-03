@@ -12,10 +12,7 @@ const Mutation = {
             email : args.data.email 
         });
         if(check){
-            return {
-                name: "",
-                email: ""
-            }
+            throw new Error("Email already exists, go to login page");
         }
         const user = new User(args.data);
         user.save()
@@ -30,13 +27,13 @@ const Mutation = {
 
 
         if (!user) {
-            throw new Error("Unable to login");
+            throw new Error("User does not exist, signup first");
         }
 
         const isMatch = await bcrypt.compare(args.data.password, user.password);
 
         if (!isMatch) {
-            throw new Error("Unable to login");
+            throw new Error("Wrong password entered");
         }
         delete user["password"];
         let token = jwt.sign(user.toJSON(), keys.secretOrKey, {
