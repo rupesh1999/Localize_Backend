@@ -1,11 +1,12 @@
 type Query {
     users: [User!]!
+    networks: [Network!]!
 }
 
 type Mutation {
     addUser(data: CreateUserInput!): User!
     login(data: LoginInput!): LoginOutput!
-    addNetwork(data: NetworkInput!): NetworkOutput!
+    addNetwork(data: NetworkInput!): Network!
 }
 
 
@@ -32,10 +33,13 @@ type LoginOutput{
 }
 
 type User{
+    _id: String!
     name: String!
     email: String!
+    networkId: String
 }
 
-type NetworkOutput{
-    networkId: String!
+type Network{
+    _id: String!
+    data: String!
 }

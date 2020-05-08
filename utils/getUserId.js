@@ -9,7 +9,8 @@ const getUserId = (request) => {
     const token = header.replace("Bearer " , "");
 
     const decoded  = jwt.verify(token , keys.secretOrKey);
-    return decoded.id;
+    console.log(decoded._id);
+    return decoded._id;
 }
 
 export default getUserId;
