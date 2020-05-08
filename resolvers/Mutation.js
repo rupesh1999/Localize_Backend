@@ -1,10 +1,9 @@
 import User from "../models/User";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
-const keys = {
-    secretOrKey: "mycompletelyhiddensecretkey"
-};
+import keys from "../constants/keys";
+import getUserId from "../utils/getUserId";
+import Network from '../models/Network';
 
 const Mutation = {
     addUser: async (parent, args, ctx, info) => {
@@ -46,6 +45,19 @@ const Mutation = {
             token: "Bearer " + token,
             user: user
         };
+    },
+    addNetwork: (parent , args , {request} , info) => {
+        const userId = getUserId(request);
+
+        const network = new Network(args.data);
+
+        network.save()
+        .then(() => console.log("network saved"))
+        .catch(e => console.log(e));
+
+        return {
+            networkId: network.id
+        }
     }
 };
 

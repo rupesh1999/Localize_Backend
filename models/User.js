@@ -19,7 +19,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-
+    networkId: {
+        type: String,
+    }
 });
 
 userSchema.pre("save", function (next) {

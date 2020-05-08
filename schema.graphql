@@ -1,9 +1,11 @@
 type Query {
     users: [User!]!
 }
+
 type Mutation {
     addUser(data: CreateUserInput!): User!
     login(data: LoginInput!): LoginOutput!
+    addNetwork(data: NetworkInput!): NetworkOutput!
 }
 
 
@@ -18,6 +20,10 @@ input LoginInput {
     password: String!
 }
 
+input NetworkInput {
+    geoJSON: String!
+}
+
 type LoginOutput{
     success: Boolean!
     msg: String!
@@ -28,4 +34,8 @@ type LoginOutput{
 type User{
     name: String!
     email: String!
+}
+
+type NetworkOutput{
+    networkId: String!
 }
